@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,300;0,400;1,100&family=Shantell+Sans:wght@300&display=swap');
 
 :root{
-  --main-desktop-font-size: 30px;
+  --main-desktop-font-size: 24px;
   --main-pad-font-size: calc(var(--main-desktop-font-size) * 4.8 / 6);
   /* --main-phone-font-size: 15px; */
   --main-background-color: #333;
   --main-text-color: #fff;
+  --main-color:#03a8f4;
   --main-desktop-border-color: #111;
   --header-toggle-width: 30px;
   --header-toggle-pad-width: calc(var(--header-toggle-width) * 5 / 6);
@@ -15,6 +16,13 @@
   --screen-pad-padding-left-right: 30px;
   --footer-icon-width:30px;
   --footer-icon-pad-width:calc(var(--footer-icon-width) * 5 / 6);
+  --text-description-h1-desktop-size:3rem;
+  --text-description-h2-desktop-size:2.5rem;
+  --text-description-p-desktop-size:1rem;
+
+  --text-description-h1-pad-size:2.5rem;
+  --text-description-h2-pad-size:2rem;
+  --text-description-p-pad-size:1rem;
 }
 
 *{
@@ -28,6 +36,8 @@
 
 html,
 body{
+  all:unset;
+  /* 所有对象无继承性 这步用于让背景透过来 */
   width: 100vw;
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
@@ -45,7 +55,7 @@ a{
 .main-strcture .content,
 .main-strcture footer{
   width: 100%;
-  border: 5px dashed var(--main-desktop-border-color);
+  /* border: 5px dashed var(--main-desktop-border-color); */
 }
 
 .main-strcture{
@@ -68,6 +78,7 @@ a{
 .main-strcture footer{
   padding: var(--screen-desktop-padding-top-bottom) var(--screen-desktop-padding-left-right) ;
   transition: 0.5s;
+  /* 动画效果 */
 }
 
 header .menu-logo{
@@ -79,10 +90,8 @@ header .menu-logo{
   /* 让那个图片不会重复出现 */
   background-position: center;
 
-
   filter: invert();
   /* 反转图片的颜色 */
-
 }
 
 .main-strcture footer{
@@ -97,6 +106,77 @@ header .menu-logo{
   width: var(--footer-icon-width);
 }
 /* 让下方的图标变色 */
+
+
+.main-strcture .content video{
+  position: absolute;
+  /* top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; */
+  inset: 0;
+  /* inset是以上四项的集合 */
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  /* 让背景视频设置填充方式 */
+  z-index: -1;
+}
+
+.content .text-description h1{
+  font-size: var(--text-description-h1-desktop-size);
+  line-height: 1em;
+  /* 设置行高从而两个标题之间没有很大的空隙 */
+}
+
+.content .text-description h2{
+  font-size: var(--text-description-h2-desktop-size);
+  line-height: 1em;
+}
+
+.content .text-description p{
+  font-size: var(--text-description-p-desktop-size);
+  line-height: 1.5rem;
+  max-width: 700px;
+  min-width: 400px;
+  margin: 3em 0;
+  /* 让文字和标题空出距离 */
+}
+
+.content .text-description a{
+  font-size: 20px;
+  text-decoration: none;
+  border: 2px solid var(--main-text-color);
+  line-height: 1em;
+  padding: 10px 30px;
+  border-radius: 30px;
+  box-shadow: 27px 27px 54px rgba(0, 0, 0, 0.1), -27px -27px 54px rgba(255,255,255,0.3);
+  transition: 0.3s;
+}
+
+.content .text-description a:hover{
+  background: var(--main-color);
+  /* 鼠标放上去会变色 */
+  letter-spacing: 5px;
+  /* 鼠标放上去字体间距变宽 */
+  box-shadow: none;
+}
+
+.content .text-description a:active{
+  background: black;
+  /* 鼠标点击会变色 */
+  letter-spacing: 5px;
+  /* 鼠标点击字体间距变宽 */
+  box-shadow: none;
+}
+
+
+@media (max-height: 1000px){
+  :root{
+    font-size: 16px;
+  }
+  /* 页面高度变小后文字会变小 */
+}
 
 
 @media (max-width: 1200px) {
@@ -119,6 +199,27 @@ header .menu-logo{
   .main-strcture footer a img{
     filter: invert();
     width: var(--footer-icon-pad-width);
+  }
+
+  .content .text-description h1{
+    font-size: var(--text-description-h1-pad-size);
+    line-height: 1em;
+    /* 设置行高从而两个标题之间没有很大的空隙 */
+  }
+  
+  .content .text-description h2{
+    font-size: var(--text-description-h2-pad-size);
+    line-height: 1em;
+  }
+  
+  .content .text-description p{
+    font-size: var(--text-description-p-pad-size);
+    line-height: 1.5rem;
+    max-width: 600px;
+    min-width: 400px;
+    /* text-align: justify; */
+    margin: 3em 0;
+    /* 让文字和标题空出距离 */
   }
 }
 /* 拖拽网页大小时，字体的大小会改变 */
